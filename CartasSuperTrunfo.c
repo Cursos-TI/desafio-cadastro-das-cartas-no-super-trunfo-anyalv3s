@@ -1,63 +1,60 @@
 #include <stdio.h>
 
-// Estrutura para armazenar os dados de uma carta
+// Definição da estrutura para armazenar os dados da carta
 typedef struct {
-    char estado[3];
-    char codigo[10];
-    char nome_cidade[50];
+    char codigo[4];  // Código da cidade (ex: A01, B02)
     int populacao;
     float area;
     float pib;
     int pontos_turisticos;
 } Carta;
 
-// Função para calcular a densidade populacional
-float calcularDensidadePopulacional(Carta c) {
-    return c.populacao / c.area;
-}
-
-// Função para calcular o PIB per capita
-float calcularPibPerCapita(Carta c) {
-    return c.pib / c.populacao;
-}
-
-// Função para comparar as cartas e determinar a vencedora
-void compararCartas(Carta c1, Carta c2) {
-    // Escolhemos o atributo "População" para a comparação
-    printf("\nComparação de cartas (Atributo: População):\n\n");
-    printf("Carta 1 - %s (%s): %d habitantes\n", c1.nome_cidade, c1.estado, c1.populacao);
-    printf("Carta 2 - %s (%s): %d habitantes\n\n", c2.nome_cidade, c2.estado, c2.populacao);
-
-    if (c1.populacao > c2.populacao) {
-        printf("Resultado: Carta 1 (%s) venceu!\n", c1.nome_cidade);
-    } else if (c2.populacao > c1.populacao) {
-        printf("Resultado: Carta 2 (%s) venceu!\n", c2.nome_cidade);
-    } else {
-        printf("Resultado: Empate!\n");
-    }
-}
-
 int main() {
-    // Definição das duas cartas
-    Carta carta1 = {"SP", "001", "São Paulo", 12300000, 1521.11, 699.28, 25};
-    Carta carta2 = {"RJ", "002", "Rio de Janeiro", 6000000, 1200.27, 400.45, 30};
+    Carta carta1, carta2;
+
+    // Entrada de dados para a primeira carta
+    printf("Cadastro da primeira carta:\n");
+    printf("Código da cidade: ");
+    scanf("%s", carta1.codigo);
+    printf("População: ");
+    scanf("%d", &carta1.populacao);
+    printf("Área: ");
+    scanf("%f", &carta1.area);
+    printf("PIB: ");
+    scanf("%f", &carta1.pib);
+    printf("Número de pontos turísticos: ");
+    scanf("%d", &carta1.pontos_turisticos);
+
+    getchar(); // Limpa o buffer antes da próxima entrada de string
+
+    // Entrada de dados para a segunda carta
+    printf("\nCadastro da segunda carta:\n");
+    printf("Código da cidade: ");
+    scanf("%s", carta2.codigo);
+    printf("População: ");
+    scanf("%d", &carta2.populacao);
+    printf("Área: ");
+    scanf("%f", &carta2.area);
+    printf("PIB: ");
+    scanf("%f", &carta2.pib);
+    printf("Número de pontos turísticos: ");
+    scanf("%d", &carta2.pontos_turisticos);
+
+    // Exibição dos dados cadastrados
+    printf("\n--- Dados das Cartas ---\n");
+    printf("\nCarta 1:\n");
+    printf("Código: %s\n", carta1.codigo);
+    printf("População: %d\n", carta1.populacao);
+    printf("Área: %.2f km²\n", carta1.area);
+    printf("PIB: %.2f\n", carta1.pib);
+    printf("Pontos turísticos: %d\n", carta1.pontos_turisticos);
     
-    // Exibição das informações das cartas
-    printf("=== Cartas Cadastradas ===\n");
-    printf("\nCarta 1 - %s (%s):\n", carta1.nome_cidade, carta1.estado);
-    printf("População: %d\nÁrea: %.2f km²\nPIB: %.2f bilhões\nPontos Turísticos: %d\n", 
-           carta1.populacao, carta1.area, carta1.pib, carta1.pontos_turisticos);
-    printf("Densidade Populacional: %.2f hab/km²\nPIB per capita: %.2f\n", 
-           calcularDensidadePopulacional(carta1), calcularPibPerCapita(carta1));
-    
-    printf("\nCarta 2 - %s (%s):\n", carta2.nome_cidade, carta2.estado);
-    printf("População: %d\nÁrea: %.2f km²\nPIB: %.2f bilhões\nPontos Turísticos: %d\n", 
-           carta2.populacao, carta2.area, carta2.pib, carta2.pontos_turisticos);
-    printf("Densidade Populacional: %.2f hab/km²\nPIB per capita: %.2f\n", 
-           calcularDensidadePopulacional(carta2), calcularPibPerCapita(carta2));
-    
-    // Comparação das cartas
-    compararCartas(carta1, carta2);
+    printf("\nCarta 2:\n");
+    printf("Código: %s\n", carta2.codigo);
+    printf("População: %d\n", carta2.populacao);
+    printf("Área: %.2f km²\n", carta2.area);
+    printf("PIB: %.2f\n", carta2.pib);
+    printf("Pontos turísticos: %d\n", carta2.pontos_turisticos);
     
     return 0;
-  }
+}
